@@ -15,18 +15,18 @@ export const fetchQuotes = async (count: number) => {
 };
 
 const Application = () => {
-  const [quotes, setQuotes] = useState([]);
+  const [quotes, setQuotes] = useState<Quote[]>([]);
 
   return (
-    <main className="w-full max-w-2xl py-16 mx-auto">
-      <Quotes>
-        {/* {quotes.map((quote) => (
+    <main className="mx-auto w-full max-w-2xl py-16">
+      <Quotes setQuotes={setQuotes}>
+        {quotes.map((quote) => (
           <InspirationalQuote
             key={quote.id}
             content={quote.content}
             source={quote.source}
           />
-        ))} */}
+        ))}
       </Quotes>
     </main>
   );
