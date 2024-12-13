@@ -1,9 +1,17 @@
+import React from 'react';
+
 type QuoteFilterProps = {
   filters: QuoteFilters;
-  setFilters: any; // Change me!
+  setFilters: React.Dispatch<React.SetStateAction<QuoteFilters>>; // Changed!
 };
 
 const QuoteFilter = ({ filters, setFilters }: QuoteFilterProps) => {
+  function handleFilter(e: React.ChangeEvent<HTMLInputElement>) {
+    setFilters((filters: QuoteFilters) => ({
+      ...filters,
+      [e.target.name]: e.target.value,
+    }));
+  }
   return (
     <section className="flex gap-4">
       <label htmlFor="content-filter">
@@ -12,12 +20,7 @@ const QuoteFilter = ({ filters, setFilters }: QuoteFilterProps) => {
           id="content-filter"
           name="content"
           value={filters.content}
-          onChange={(e) =>
-            setFilters((filters: any /* Ugh. */) => ({
-              ...filters,
-              [e.target.name]: e.target.value,
-            }))
-          }
+          onChange={handleFilter}
           // 👆 This feels like duplicate code.
           placeholder="Filter by quote content"
         />
@@ -28,12 +31,7 @@ const QuoteFilter = ({ filters, setFilters }: QuoteFilterProps) => {
           id="source-filter"
           name="source"
           value={filters.source}
-          onChange={(e) =>
-            setFilters((filters: any /* Ugh. */) => ({
-              ...filters,
-              [e.target.name]: e.target.value,
-            }))
-          }
+          onChange={handleFilter}
           // 👆 This feels like duplicate code.
           placeholder="Filter by source"
         />

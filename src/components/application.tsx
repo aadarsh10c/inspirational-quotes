@@ -21,7 +21,7 @@ const fetchPosts = async (count: number) => {
 const Application = () => {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [count, setCount] = useState(10);
-  const [filters, setFilters] = useState({ content: '', source: '' });
+  const [filters, setFilters] = useState<QuoteFilters>({ content: '', source: '' });
 
   const visibleQuotes = useMemo(
     () => filterQuotes(quotes, filters),
